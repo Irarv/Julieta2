@@ -1,5 +1,5 @@
 const audio = new Audio('francés_limón-EnanitosVerdes.mp3');
-audio.loop = true; 
+audio.loop = true; volume = 1.0;
 
 const matchstick = document.getElementById('matchstick');
 const fireContainer = document.getElementById('fire-container');
