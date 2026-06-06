@@ -17,10 +17,10 @@ let currentY = 0;
 let ignited = false;
 
 const storyPhrases = [
-    { side: 'left', text: "Anhelo que nos tomemos el tiempo para conocernos muy bien... 🕊️" },
-    { side: 'right', text: "Porque desde que empezamos a hablar, me di cuenta de tu vibra única. ✨" },
-    { side: 'left', text: "Me encanta tu forma de ser y la tranquilidad que transmites. 🪐" },
-    { side: 'right', text: "No hay prisa, disfruto cada conversación y risa contigo. 🤍" }
+    { side: 'left', text: "Sé que apenas nos estamos conociendo y que queremos ir paso a paso... 🕊️" },
+    { side: 'right', text: "Pero desde que empezamos a hablar, me di cuenta de que eres alguien diferente. ✨" },
+    { side: 'left', text: "Me encanta tu forma de ser y la seguridad que me transmites. 🪐" },
+    { side: 'right', text: "No hay prisa, disfruto mucho cada momento y cada risa contigo, solo espero que sigamos conociéndonos más. 🤍" }
 ];
 
 function dragStart(e) {
