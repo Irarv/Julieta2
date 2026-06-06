@@ -1,5 +1,5 @@
 const audio = new Audio('Frances_limon.mp3');
-audio.loop = true; 
+audio.loop = true;
 
 const matchstick = document.getElementById('matchstick');
 const fireContainer = document.getElementById('fire-container');
