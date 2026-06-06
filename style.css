@@ -1,0 +1,244 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #050508;
+    color: #ffffff;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    transition: background 4s ease, box-shadow 4s ease;
+}
+
+.stars-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, #0c0c14 0%, #040406 100%);
+    z-index: 1;
+}
+.stars-background::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+        radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px);
+    background-size: 350px 350px, 250px 250px;
+    opacity: 0.3;
+}
+
+/* Layout Base (PC) */
+.main-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row; /* Uno al lado del otro en PC */
+    z-index: 2;
+}
+
+.messages-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+    z-index: 3;
+}
+
+.center-stage {
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 4;
+}
+
+.drag-instruction {
+    font-size: 0.85rem;
+    color: #7f8c8d;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    animation: pulseGlow 2s infinite;
+}
+
+/* FÓSFORO */
+.match-box {
+    position: relative;
+    height: 320px;
+    width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.matchstick {
+    position: absolute;
+    bottom: 20px;
+    width: 12px;
+    height: 200px;
+    cursor: grab;
+    transform: translateX(0);
+}
+
+.match-wood {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, #f3d1a7, #dfb78c, #c99e71);
+    border-radius: 2px;
+    box-shadow: 2px 4px 10px rgba(0,0,0,0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+.charred-layer {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 0%;
+    background: linear-gradient(to bottom, #111 80%, #333 95%, #7f8c8d 100%);
+}
+
+.match-head {
+    position: absolute;
+    top: -18px;
+    left: -3px;
+    width: 18px;
+    height: 22px;
+    background: radial-gradient(circle at 35% 35%, #e74c3c 0%, #c0392b 70%);
+    border-radius: 50% 50% 45% 45%;
+}
+
+/* FUEGO */
+.fire-container {
+    position: absolute;
+    top: -55px;
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    width: 30px;
+    height: 70px;
+    pointer-events: none;
+}
+.fire-container.active { transform: translateX(-50%) scale(1); }
+
+.flame-core {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0,0,255,0.8) 0%, #ff3f34 30%, #ffdd59 80%, transparent 100%);
+    border-radius: 50% 50% 30% 30%;
+    animation: fireWobble 0.15s infinite alternate ease-in-out;
+}
+
+.flame-glow {
+    position: absolute;
+    bottom: -10px;
+    left: -15px;
+    width: 60px;
+    height: 80px;
+    background: radial-gradient(circle, rgba(255,140,0,0.3) 0%, transparent 70%);
+    filter: blur(8px);
+}
+
+/* BURBUJAS DE TEXTO */
+.text-bubble {
+    font-size: 0.95rem;
+    color: #f5f6fa;
+    width: 100%;
+    max-width: 260px;
+    line-height: 1.5;
+    background: rgba(255, 255, 255, 0.04);
+    padding: 12px 16px;
+    border-radius: 12px;
+    border-left: 3px solid #ffaa44;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInUp 1s forwards ease;
+}
+
+/* CARTA FINAL */
+.final-screen {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100vh;
+    background: #030305;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0; visibility: hidden;
+    transition: opacity 1.5s;
+    padding: 20px;
+}
+.final-screen.show { opacity: 1; visibility: visible; }
+
+.card-box {
+    background: #111116;
+    border: 1px solid rgba(255,255,255,0.05);
+    padding: 30px;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 420px;
+    text-align: center;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+}
+.card-box h3 { color: #ffdd59; margin-bottom: 15px; font-size: 1.25rem; }
+.card-box p { font-size: 0.9rem; line-height: 1.7; color: #dcdde1; margin-bottom: 15px; }
+.signature { display: block; margin-top: 20px; color: #ffa502; font-size: 0.95rem; }
+
+/* 📱 ADAPTACIÓN PARA CELULARES (RESPONSIVE) 📱 */
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column; /* Apila todo verticalmente */
+        justify-content: space-between;
+        align-items: center;
+        padding: 30px 10px;
+    }
+
+    .center-stage {
+        height: auto;
+        order: 2; /* El fósforo se queda en el centro */
+        margin: 20px 0;
+    }
+
+    .match-box {
+        height: 260px; /* Un poco más pequeño en celular */
+    }
+
+    .matchstick {
+        height: 160px;
+    }
+
+    .left-messages {
+        order: 1; /* Los primeros mensajes salen arriba */
+        justify-content: flex-end;
+        width: 100%;
+    }
+
+    .right-messages {
+        order: 3; /* Los siguientes mensajes salen abajo */
+        justify-content: flex-start;
+        width: 100%;
+    }
+
+    .text-bubble {
+        max-width: 90%; /* Que ocupe casi todo el ancho de la pantalla del celular */
+        font-size: 0.9rem;
+        margin: 5px auto;
+    }
+}
+
+/* ANIMACIONES */
+@keyframes fireWobble { 0% { transform: rotate(-1deg); } 100% { transform: rotate(1deg); } }
+@keyframes pulseGlow { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+@keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
